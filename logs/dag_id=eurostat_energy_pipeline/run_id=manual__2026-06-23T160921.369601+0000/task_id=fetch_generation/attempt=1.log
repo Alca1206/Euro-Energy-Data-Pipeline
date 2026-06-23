@@ -1,0 +1,56 @@
+[2026-06-23T16:09:23.526+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T16:09:23.548+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T16:09:21.369601+00:00 [queued]>
+[2026-06-23T16:09:23.554+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T16:09:21.369601+00:00 [queued]>
+[2026-06-23T16:09:23.555+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T16:09:23.564+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): fetch_generation> on 2026-06-23 16:09:21.369601+00:00
+[2026-06-23T16:09:23.570+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2989) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T16:09:23.569+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'fetch_generation', 'manual__2026-06-23T16:09:21.369601+00:00', '--job-id', '73', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmp47c4ri_p']
+[2026-06-23T16:09:23.572+0000] {standard_task_runner.py:63} INFO - Started process 2991 to run task
+[2026-06-23T16:09:23.572+0000] {standard_task_runner.py:91} INFO - Job 73: Subtask fetch_generation
+[2026-06-23T16:09:23.622+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T16:09:21.369601+00:00 [running]> on host 5d47c2a72ae9
+[2026-06-23T16:09:23.681+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='fetch_generation' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T16:09:21.369601+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T16:09:21.369601+00:00'
+[2026-06-23T16:09:23.682+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T16:09:23.683+0000] {logging_mixin.py:188} INFO - Fetching: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=GEP&siec=RA100&siec=RA200&siec=RA300&siec=N900H&siec=C0000&siec=G3000&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&sinceTimePeriod=2020&lang=en
+[2026-06-23T16:09:23.910+0000] {logging_mixin.py:188} INFO - Geo keys: ['BE', 'DE', 'ES', 'FR', 'IT', 'NL', 'PL', 'SE']
+[2026-06-23T16:09:23.910+0000] {logging_mixin.py:188} INFO - Time keys: ['2020', '2021', '2022', '2023', '2024']
+[2026-06-23T16:09:23.911+0000] {logging_mixin.py:188} INFO - Siec keys: ['G3000', 'RA100', 'RA200', 'RA300', 'N900H']
+[2026-06-23T16:09:23.911+0000] {logging_mixin.py:188} INFO - Total values: 200
+[2026-06-23T16:09:23.912+0000] {logging_mixin.py:188} INFO - Rows parsed: 200
+[2026-06-23T16:09:23.922+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T16:09:23.922+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/energy_ingestion_pipeline.py", line 210, in fetch_generation
+    cursor.executemany(
+psycopg2.errors.UndefinedColumn: column "year" of relation "raw_energy_generation" does not exist
+LINE 1: INSERT INTO raw_energy_generation (country, year, source, va...
+                                                    ^
+
+[2026-06-23T16:09:23.935+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=eurostat_energy_pipeline, task_id=fetch_generation, run_id=manual__2026-06-23T16:09:21.369601+00:00, execution_date=20260623T160921, start_date=20260623T160923, end_date=20260623T160923
+[2026-06-23T16:09:23.943+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 73 for task fetch_generation (column "year" of relation "raw_energy_generation" does not exist
+LINE 1: INSERT INTO raw_energy_generation (country, year, source, va...
+                                                    ^
+; 2991)
+[2026-06-23T16:09:23.986+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-06-23T16:09:24.001+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T16:09:24.005+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

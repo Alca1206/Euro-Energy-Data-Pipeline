@@ -1,0 +1,25 @@
+[2026-06-23T17:36:12.686+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T17:36:12.708+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T17:36:10.577246+00:00 [queued]>
+[2026-06-23T17:36:12.714+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T17:36:10.577246+00:00 [queued]>
+[2026-06-23T17:36:12.714+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T17:36:12.724+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): fetch_generation> on 2026-06-23 17:36:10.577246+00:00
+[2026-06-23T17:36:12.729+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'fetch_generation', 'manual__2026-06-23T17:36:10.577246+00:00', '--job-id', '8', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmp7txi6i53']
+[2026-06-23T17:36:12.731+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=259) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T17:36:12.732+0000] {standard_task_runner.py:91} INFO - Job 8: Subtask fetch_generation
+[2026-06-23T17:36:12.732+0000] {standard_task_runner.py:63} INFO - Started process 262 to run task
+[2026-06-23T17:36:12.784+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T17:36:10.577246+00:00 [running]> on host 52f43d9c0619
+[2026-06-23T17:36:12.842+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='fetch_generation' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T17:36:10.577246+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T17:36:10.577246+00:00'
+[2026-06-23T17:36:12.843+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T17:36:12.844+0000] {logging_mixin.py:188} INFO - Fetching: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=GEP&siec=RA100&siec=RA200&siec=RA300&siec=N900H&siec=C0000&siec=G3000&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&sinceTimePeriod=2020&lang=en
+[2026-06-23T17:36:16.310+0000] {logging_mixin.py:188} INFO - Geo keys: ['BE', 'DE', 'ES', 'FR', 'IT', 'NL', 'PL', 'SE']
+[2026-06-23T17:36:16.311+0000] {logging_mixin.py:188} INFO - Time keys: ['2020', '2021', '2022', '2023', '2024']
+[2026-06-23T17:36:16.311+0000] {logging_mixin.py:188} INFO - Siec keys: ['G3000', 'RA100', 'RA200', 'RA300', 'N900H']
+[2026-06-23T17:36:16.311+0000] {logging_mixin.py:188} INFO - Total values: 200
+[2026-06-23T17:36:16.312+0000] {logging_mixin.py:188} INFO - Rows parsed: 200
+[2026-06-23T17:36:16.339+0000] {logging_mixin.py:188} INFO - Generation rows inserted: 200
+[2026-06-23T17:36:16.340+0000] {python.py:237} INFO - Done. Returned value was: 200
+[2026-06-23T17:36:16.341+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T17:36:16.357+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=eurostat_energy_pipeline, task_id=fetch_generation, run_id=manual__2026-06-23T17:36:10.577246+00:00, execution_date=20260623T173610, start_date=20260623T173612, end_date=20260623T173616
+[2026-06-23T17:36:16.402+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-23T17:36:16.413+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T17:36:16.415+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

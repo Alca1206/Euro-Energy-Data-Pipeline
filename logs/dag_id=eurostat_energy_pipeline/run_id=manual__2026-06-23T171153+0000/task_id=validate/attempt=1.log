@@ -1,0 +1,21 @@
+[2026-06-23T17:11:55.813+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T17:11:55.835+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.validate manual__2026-06-23T17:11:53+00:00 [queued]>
+[2026-06-23T17:11:55.848+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.validate manual__2026-06-23T17:11:53+00:00 [queued]>
+[2026-06-23T17:11:55.849+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T17:11:55.866+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): validate> on 2026-06-23 17:11:53+00:00
+[2026-06-23T17:11:55.874+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=3644) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T17:11:55.873+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'validate', 'manual__2026-06-23T17:11:53+00:00', '--job-id', '86', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmpwu0ydjmt']
+[2026-06-23T17:11:55.875+0000] {standard_task_runner.py:63} INFO - Started process 3645 to run task
+[2026-06-23T17:11:55.876+0000] {standard_task_runner.py:91} INFO - Job 86: Subtask validate
+[2026-06-23T17:11:55.927+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.validate manual__2026-06-23T17:11:53+00:00 [running]> on host 5d47c2a72ae9
+[2026-06-23T17:11:55.989+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='validate' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T17:11:53+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T17:11:53+00:00'
+[2026-06-23T17:11:55.990+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T17:11:55.991+0000] {logging_mixin.py:188} INFO - Generation rows: 200
+[2026-06-23T17:11:55.991+0000] {logging_mixin.py:188} INFO - Consumption rows: 2560
+[2026-06-23T17:11:55.991+0000] {logging_mixin.py:188} INFO - Validation passed.
+[2026-06-23T17:11:55.991+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-06-23T17:11:55.992+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T17:11:55.998+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=eurostat_energy_pipeline, task_id=validate, run_id=manual__2026-06-23T17:11:53+00:00, execution_date=20260623T171153, start_date=20260623T171155, end_date=20260623T171155
+[2026-06-23T17:11:56.010+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-23T17:11:56.020+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T17:11:56.021+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
