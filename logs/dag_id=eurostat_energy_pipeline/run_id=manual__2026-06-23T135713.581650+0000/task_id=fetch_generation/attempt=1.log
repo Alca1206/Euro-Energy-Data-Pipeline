@@ -1,0 +1,47 @@
+[2026-06-23T13:57:15.173+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T13:57:15.197+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T13:57:13.581650+00:00 [queued]>
+[2026-06-23T13:57:15.203+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T13:57:13.581650+00:00 [queued]>
+[2026-06-23T13:57:15.203+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T13:57:15.213+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): fetch_generation> on 2026-06-23 13:57:13.581650+00:00
+[2026-06-23T13:57:15.220+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1564) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T13:57:15.219+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'fetch_generation', 'manual__2026-06-23T13:57:13.581650+00:00', '--job-id', '56', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmp3yswun1d']
+[2026-06-23T13:57:15.221+0000] {standard_task_runner.py:63} INFO - Started process 1566 to run task
+[2026-06-23T13:57:15.221+0000] {standard_task_runner.py:91} INFO - Job 56: Subtask fetch_generation
+[2026-06-23T13:57:15.273+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.fetch_generation manual__2026-06-23T13:57:13.581650+00:00 [running]> on host 5d47c2a72ae9
+[2026-06-23T13:57:15.324+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='fetch_generation' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T13:57:13.581650+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T13:57:13.581650+00:00'
+[2026-06-23T13:57:15.325+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T13:57:15.326+0000] {logging_mixin.py:188} INFO - Fetching: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=FC&siec=TOTAL_NE&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&lang=en
+[2026-06-23T13:57:15.627+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T13:57:15.627+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/energy_ingestion_pipeline.py", line 76, in fetch_generation
+    response.raise_for_status()
+  File "/home/airflow/.local/lib/python3.12/site-packages/requests/models.py", line 1021, in raise_for_status
+    raise HTTPError(http_error_msg, response=self)
+requests.exceptions.HTTPError: 413 Client Error: Request Entity Too Large for url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=FC&siec=TOTAL_NE&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&lang=en
+[2026-06-23T13:57:15.641+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=eurostat_energy_pipeline, task_id=fetch_generation, run_id=manual__2026-06-23T13:57:13.581650+00:00, execution_date=20260623T135713, start_date=20260623T135715, end_date=20260623T135715
+[2026-06-23T13:57:15.648+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 56 for task fetch_generation (413 Client Error: Request Entity Too Large for url: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=FC&siec=TOTAL_NE&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&lang=en; 1566)
+[2026-06-23T13:57:15.676+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-06-23T13:57:15.691+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T13:57:15.695+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

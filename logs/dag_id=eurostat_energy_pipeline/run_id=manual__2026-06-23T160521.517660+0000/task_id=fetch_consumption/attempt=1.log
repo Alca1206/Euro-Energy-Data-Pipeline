@@ -1,0 +1,57 @@
+[2026-06-23T16:05:23.109+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T16:05:23.130+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T16:05:21.517660+00:00 [queued]>
+[2026-06-23T16:05:23.137+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T16:05:21.517660+00:00 [queued]>
+[2026-06-23T16:05:23.137+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T16:05:23.147+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): fetch_consumption> on 2026-06-23 16:05:21.517660+00:00
+[2026-06-23T16:05:23.152+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'fetch_consumption', 'manual__2026-06-23T16:05:21.517660+00:00', '--job-id', '70', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmprbk_x647']
+[2026-06-23T16:05:23.154+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=2933) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T16:05:23.154+0000] {standard_task_runner.py:91} INFO - Job 70: Subtask fetch_consumption
+[2026-06-23T16:05:23.154+0000] {standard_task_runner.py:63} INFO - Started process 2935 to run task
+[2026-06-23T16:05:23.204+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T16:05:21.517660+00:00 [running]> on host 5d47c2a72ae9
+[2026-06-23T16:05:23.258+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='fetch_consumption' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T16:05:21.517660+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T16:05:21.517660+00:00'
+[2026-06-23T16:05:23.259+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T16:05:23.260+0000] {logging_mixin.py:188} INFO - Fetching: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=FC_E&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&sinceTimePeriod=2020&lang=en
+[2026-06-23T16:05:23.516+0000] {logging_mixin.py:188} INFO - API Response keys: dict_keys(['version', 'class', 'label', 'source', 'updated', 'value', 'status', 'id', 'size', 'dimension', 'extension'])
+[2026-06-23T16:05:23.516+0000] {logging_mixin.py:188} INFO - Dimensions: ['freq', 'nrg_bal', 'siec', 'unit', 'geo', 'time']
+[2026-06-23T16:05:23.517+0000] {logging_mixin.py:188} INFO - Sizes: [1, 1, 72, 1, 8, 5]
+[2026-06-23T16:05:23.517+0000] {logging_mixin.py:188} INFO - Geo keys: ['BE', 'DE', 'ES', 'FR', 'IT', 'NL', 'PL', 'SE']
+[2026-06-23T16:05:23.517+0000] {logging_mixin.py:188} INFO - Time keys: ['2020', '2021', '2022', '2023', '2024']
+[2026-06-23T16:05:23.518+0000] {logging_mixin.py:188} INFO - Total values: 2560
+[2026-06-23T16:05:23.520+0000] {logging_mixin.py:188} INFO - Rows parsed: 2560
+[2026-06-23T16:05:23.528+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T16:05:23.529+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/decorators/base.py", line 265, in execute
+    return_value = super().execute(context)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 400, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/energy_ingestion_pipeline.py", line 294, in fetch_consumption
+    cursor.executemany(
+psycopg2.errors.UndefinedColumn: column "energy_type" of relation "raw_energy_consumption" does not exist
+LINE 1: INSERT INTO raw_energy_consumption (energy_type, country, da...
+                                            ^
+
+[2026-06-23T16:05:23.542+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=eurostat_energy_pipeline, task_id=fetch_consumption, run_id=manual__2026-06-23T16:05:21.517660+00:00, execution_date=20260623T160521, start_date=20260623T160523, end_date=20260623T160523
+[2026-06-23T16:05:23.549+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 70 for task fetch_consumption (column "energy_type" of relation "raw_energy_consumption" does not exist
+LINE 1: INSERT INTO raw_energy_consumption (energy_type, country, da...
+                                            ^
+; 2935)
+[2026-06-23T16:05:23.569+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2026-06-23T16:05:23.576+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

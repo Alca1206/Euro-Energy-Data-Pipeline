@@ -1,0 +1,27 @@
+[2026-06-23T17:32:59.663+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T17:32:59.684+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T17:32:58.307386+00:00 [queued]>
+[2026-06-23T17:32:59.690+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T17:32:58.307386+00:00 [queued]>
+[2026-06-23T17:32:59.691+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T17:32:59.700+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): fetch_consumption> on 2026-06-23 17:32:58.307386+00:00
+[2026-06-23T17:32:59.705+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'eurostat_energy_pipeline', 'fetch_consumption', 'manual__2026-06-23T17:32:58.307386+00:00', '--job-id', '6', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmp8uwc_72l']
+[2026-06-23T17:32:59.707+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=193) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T17:32:59.707+0000] {standard_task_runner.py:91} INFO - Job 6: Subtask fetch_consumption
+[2026-06-23T17:32:59.708+0000] {standard_task_runner.py:63} INFO - Started process 196 to run task
+[2026-06-23T17:32:59.755+0000] {task_command.py:426} INFO - Running <TaskInstance: eurostat_energy_pipeline.fetch_consumption manual__2026-06-23T17:32:58.307386+00:00 [running]> on host 52f43d9c0619
+[2026-06-23T17:32:59.811+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='eurostat_energy_pipeline' AIRFLOW_CTX_TASK_ID='fetch_consumption' AIRFLOW_CTX_EXECUTION_DATE='2026-06-23T17:32:58.307386+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2026-06-23T17:32:58.307386+00:00'
+[2026-06-23T17:32:59.812+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T17:32:59.813+0000] {logging_mixin.py:188} INFO - Fetching: https://ec.europa.eu/eurostat/api/dissemination/statistics/1.0/data/nrg_bal_c?format=JSON&freq=A&unit=KTOE&nrg_bal=FC_E&geo=DE&geo=FR&geo=ES&geo=IT&geo=NL&geo=BE&geo=PL&geo=SE&sinceTimePeriod=2020&lang=en
+[2026-06-23T17:33:00.134+0000] {logging_mixin.py:188} INFO - API Response keys: dict_keys(['version', 'class', 'label', 'source', 'updated', 'value', 'status', 'id', 'size', 'dimension', 'extension'])
+[2026-06-23T17:33:00.135+0000] {logging_mixin.py:188} INFO - Dimensions: ['freq', 'nrg_bal', 'siec', 'unit', 'geo', 'time']
+[2026-06-23T17:33:00.136+0000] {logging_mixin.py:188} INFO - Sizes: [1, 1, 72, 1, 8, 5]
+[2026-06-23T17:33:00.137+0000] {logging_mixin.py:188} INFO - Geo keys: ['BE', 'DE', 'ES', 'FR', 'IT', 'NL', 'PL', 'SE']
+[2026-06-23T17:33:00.137+0000] {logging_mixin.py:188} INFO - Time keys: ['2020', '2021', '2022', '2023', '2024']
+[2026-06-23T17:33:00.138+0000] {logging_mixin.py:188} INFO - Total values: 2560
+[2026-06-23T17:33:00.140+0000] {logging_mixin.py:188} INFO - Rows parsed: 2560
+[2026-06-23T17:33:00.368+0000] {logging_mixin.py:188} INFO - Consumption rows inserted: 2560
+[2026-06-23T17:33:00.370+0000] {python.py:237} INFO - Done. Returned value was: 2560
+[2026-06-23T17:33:00.370+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T17:33:00.387+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=eurostat_energy_pipeline, task_id=fetch_consumption, run_id=manual__2026-06-23T17:32:58.307386+00:00, execution_date=20260623T173258, start_date=20260623T173259, end_date=20260623T173300
+[2026-06-23T17:33:00.403+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-23T17:33:00.419+0000] {taskinstance.py:3498} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T17:33:00.421+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

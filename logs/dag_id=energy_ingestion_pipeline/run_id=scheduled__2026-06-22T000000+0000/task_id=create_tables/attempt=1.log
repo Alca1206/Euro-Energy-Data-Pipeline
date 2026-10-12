@@ -1,0 +1,18 @@
+[2026-06-23T00:20:45.703+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2026-06-23T00:20:45.767+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: energy_ingestion_pipeline.create_tables scheduled__2026-06-22T00:00:00+00:00 [queued]>
+[2026-06-23T00:20:45.792+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: energy_ingestion_pipeline.create_tables scheduled__2026-06-22T00:00:00+00:00 [queued]>
+[2026-06-23T00:20:45.812+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 1
+[2026-06-23T00:20:45.838+0000] {taskinstance.py:2330} INFO - Executing <Task(_PythonDecoratedOperator): create_tables> on 2026-06-22 00:00:00+00:00
+[2026-06-23T00:20:45.865+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/task/task_runner/standard_task_runner.py:61 DeprecationWarning: This process (pid=1204) is multi-threaded, use of fork() may lead to deadlocks in the child.
+[2026-06-23T00:20:45.862+0000] {standard_task_runner.py:90} INFO - Running: ['airflow', 'tasks', 'run', 'energy_ingestion_pipeline', 'create_tables', 'scheduled__2026-06-22T00:00:00+00:00', '--job-id', '36', '--raw', '--subdir', 'DAGS_FOLDER/energy_ingestion_pipeline.py', '--cfg-path', '/tmp/tmpg1f654_s']
+[2026-06-23T00:20:45.881+0000] {standard_task_runner.py:63} INFO - Started process 1209 to run task
+[2026-06-23T00:20:45.890+0000] {standard_task_runner.py:91} INFO - Job 36: Subtask create_tables
+[2026-06-23T00:20:46.123+0000] {task_command.py:426} INFO - Running <TaskInstance: energy_ingestion_pipeline.create_tables scheduled__2026-06-22T00:00:00+00:00 [running]> on host 5d47c2a72ae9
+[2026-06-23T00:20:46.240+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='airflow' AIRFLOW_CTX_DAG_ID='energy_ingestion_pipeline' AIRFLOW_CTX_TASK_ID='create_tables' AIRFLOW_CTX_EXECUTION_DATE='2026-06-22T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2026-06-22T00:00:00+00:00'
+[2026-06-23T00:20:46.251+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2026-06-23T00:20:46.265+0000] {python.py:237} INFO - Done. Returned value was: None
+[2026-06-23T00:20:46.285+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2026-06-23T00:20:46.497+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=energy_ingestion_pipeline, task_id=create_tables, run_id=scheduled__2026-06-22T00:00:00+00:00, execution_date=20260622T000000, start_date=20260623T002045, end_date=20260623T002046
+[2026-06-23T00:20:46.561+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2026-06-23T00:20:46.622+0000] {taskinstance.py:3498} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2026-06-23T00:20:46.658+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
